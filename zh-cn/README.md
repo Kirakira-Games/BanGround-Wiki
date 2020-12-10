@@ -12,11 +12,11 @@ BanGround是一款社区驱动的七轨下落式音乐游戏。
 
 #### Kirakira Games
 
-[KCFindstr](https://github.com/findstr)：程序代码、后端代码
+[KCFindstr](https://github.com/KCfindstr)：程序代码、后端代码
 
 [GEEKiDoS](https://github.com/GEEKiDoS)：程序代码
 
-[AeCw](https://github.com/AeCw)：美术设计
+[AeCw](https://github.com/AECBanana)：美术设计
 
 [Frenqy](https://github.com/MCsentic)：程序代码
 
