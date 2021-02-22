@@ -96,7 +96,7 @@ void PlayOneShot();
 local se_normal = BanGround: PrecacheSound("se_normal.wav");
 function OnJudge(result)
     -- 每当发生Perfect判定时，播放音效
-    if result == 0 then se_normal: PlayOneShot() end
+    if result.JudgeResult == 0 then se_normal: PlayOneShot() end
 end
 ```
 
@@ -323,19 +323,39 @@ function OnJudge(result)
 
 | 参数名 | 数据类型 | 说明                                   |
 | ------ | -------- | -------------------------------------- |
-| result | int      | 事件发生时，触发事件的音符的判定结果。 |
+| result | JudgeResult      | 事件发生时，触发事件的音符的判定结果。 |
 
-> 注：各判定对应的result的值：
->
-> Miss：4
->
-> Bad：3
->
-> Good：2
->
-> Great：1
->
-> Perfect：0
+#### JudgeResult 类型的属性:
+|属性名|属性类型|说明|
+|-|-|-|
+|Lane|int|被判定 Note 的轨道 (0-6)|
+|Type|int|被判定 Note 的类型 (见下<sup>1</sup>)|
+|Time|int|被判定 Note 的时间 (毫秒)|
+|Beat|float|被判定 Note 的节拍|
+|JudgeResult|int|判定结果 (见下<sup>2</sup>)
+|JudgeTime|int|判定发生的时间 (毫秒)|
+|JudgeOffset|int|判定发生的时间距离被判定 Note 的时间的差|
+
+##### 注：
+Note 的类型<sup>1</sup>
+
+|类型|值|
+|-|-|
+|Single|0|
+|Flick|1|
+|Slide Start|2|
+|Slide Tick|3|
+|Slide End|4|
+|Slide End (Flick)|5|
+
+判定结果<sup>2</sup>
+|结果|值|
+|-|-|
+|Perfect|0|
+|Great|1|
+|Good|2|
+|Bad|3|
+|Miss|4|
 
 **示例**
 
@@ -345,9 +365,9 @@ local sprite_don = CreateSprite(texture_don_normal);
 sprite_don: SetPosition(6, 2, 2);
 function OnJudge(result)
     -- Perfect判定时给精灵染红色，Miss时染灰色，其它不染色
-    if (result == 0) then
+    if (result.JudgeResult == 0) then
         sprite_don: SetColor(255, 0, 0, 255);
-    elseif (result == 4) then
+    elseif (result.JudgeResult == 4) then
         sprite_don: SetColor(30, 30, 30, 255);
     else
         sprite_don: SetColor(0, 0, 0, 255);
@@ -627,9 +647,6 @@ ScriptSoundEffect PrecacheSound(string snd)
 local se = BanGround: PrecacheSound("se.wav");
 se.PlayOneShot();
 ```
-
-
-
 
 
 ## 示例
