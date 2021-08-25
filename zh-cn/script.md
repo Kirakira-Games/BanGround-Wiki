@@ -460,7 +460,7 @@ local spr = BanGround: CreateSprite(tex);
 ### 设置背景
 
 ```c#
-void SetBackGround(int texId)
+void SetBackground(int texId)
 ```
 
 将背景替换为指定材质。
@@ -475,7 +475,7 @@ void SetBackGround(int texId)
 -- 读取材质
 local bg = BanGround: LoadTexture("bg.png");
 -- 替换背景
-BanGround: SetBackGround(bg);
+BanGround: SetBackground(bg);
 ```
 
 
